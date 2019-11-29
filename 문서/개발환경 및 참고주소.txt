@@ -1,0 +1,14 @@
+개발 환경
+
+jdk Zulu 8.33.0.1 ( java 1.8.0_192 )
+Spring 3.9.7
+Apache Tomcat/9.0.27
+MySQL 8.0.12 Community Server
+Vue 4.0.5
+Node v12.13.0
+npm 6.12.0 : Node 에서 사용 가능한 모듈들을 패키지화 시켜놓은 것
+
+시스템 구조 참고
+https://gmlwjd9405.github.io/2018/10/27/webserver-vs-was.html
+http://jkais99.org/journal/v12n10/41/4333.html
+https://cocomo.tistory.com/257

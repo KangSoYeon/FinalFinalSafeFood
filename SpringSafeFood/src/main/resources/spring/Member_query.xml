@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.model.dao.MemberDAO">
+	<select id="search" parameterType="string" resultType="member">
+		select * from member where id=#{id}
+	</select>
+	<select id="searchAll" resultType="member">
+		select * from member
+	</select>
+	<update id="update" parameterType="member">
+		update member set password = #{password:VARCHAR},
+						  name = #{name:VARCHAR},
+						  email = #{email:VARCHAR},
+						  gender = #{gender:VARCHAR},
+						  weight = #{weight:VARCHAR},
+						  du = #{du:INTEGER},
+						  cong = #{cong:INTEGER},
+						  milk = #{milk:INTEGER},
+						  crab = #{crab:INTEGER},
+						  shi = #{shi:INTEGER},
+						  tu = #{tu:INTEGER},
+						  sal = #{sal:INTEGER},
+						  suk = #{suk:INTEGER},
+						  cow = #{cow:INTEGER},
+						  chi = #{chi:INTEGER},
+						  pig = #{pig:INTEGER},
+						  peach = #{peach:INTEGER},
+						  mind = #{mind:INTEGER},
+						  egg = #{egg:INTEGER}
+						  where id = #{id:VARCHAR}
+	</update>
+	<delete id="delete" parameterType="string">
+		delete from member where id = #{id}
+	</delete>
+	<delete id="delete_notice" parameterType="string">
+		delete from notice where id = #{id}
+	</delete>
+	<delete id="delete_faq" parameterType="string">
+		delete from faq where id = #{id}
+	</delete>
+	<delete id="delete_cart" parameterType="string">
+		delete from cart where id = #{id}
+	</delete>
+	<delete id="delete_mydiet" parameterType="string">
+		delete from mydiet where id = #{id}
+	</delete>
+	
+	<insert id="insert" parameterType="member">
+		insert into member(id,
+		password,name,email,gender,weight,
+		du,cong,milk,crab,shi,tu,sal,suk,cow,chi,pig,peach,mind,egg) 
+		values(			  #{id:VARCHAR},
+						  #{password:VARCHAR},
+						  #{name:VARCHAR},
+						  #{email:VARCHAR},
+						  #{gender:VARCHAR},
+						  #{weight:VARCHAR},
+						  #{du:INTEGER},
+						  #{cong:INTEGER},
+						  #{milk:INTEGER},
+						  #{crab:INTEGER},
+						  #{shi:INTEGER},
+						  #{tu:INTEGER},
+						  #{sal:INTEGER},
+						  #{suk:INTEGER},
+						  #{cow:INTEGER},
+						  #{chi:INTEGER},
+						  #{pig:INTEGER},
+						  #{peach:INTEGER},
+						  #{mind:INTEGER},
+						  #{egg:INTEGER}
+						  )
+	</insert>
+</mapper>

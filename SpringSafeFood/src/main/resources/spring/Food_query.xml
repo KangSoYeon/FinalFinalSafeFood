@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.model.dao.FoodDAO">
+
+	<select id="search" parameterType="string" resultType="food">
+		select * from food where code = #{code}
+	</select>
+	<select id="searchAll" resultType="food">
+		select * from food
+	</select>
+	<select id="searchAllName" parameterType="string" resultType="food">
+		select * from food where name like concat('%',#{name},'%');
+	</select>
+	<select id="searchAllMaker" parameterType="string" resultType="food">
+		select * from food where maker like concat('%',#{maker},'%');
+	</select>
+	<select id="searchAllMaterial" parameterType="string" resultType="food">
+		select * from food where material like concat('%',#{material},'%');
+	</select>
+	<insert id="insert" parameterType="food">
+		insert into food(code,name,supportpereat,calory,carbo,protein,fat,sugar,natrium
+						,chole,fattyacid,transfat,maker,material,img)
+					values(#{code:VARCHAR}
+						  ,#{name:VARCHAR}
+						  ,#{supportpereat:DECIMAL}
+						  ,#{calory:DECIMAL}
+						  ,#{carbo:DECIMAL}
+						  ,#{protein:DECIMAL}
+						  ,#{fat:DECIMAL}
+						  ,#{sugar:DECIMAL}
+						  ,#{natrium:DECIMAL}
+						  ,#{chole:DECIMAL}
+						  ,#{fattyacid:DECIMAL}
+						  ,#{transfat:DECIMAL}
+						  ,#{maker:VARCHAR}
+						  ,#{material:VARCHAR}
+						  ,#{img:VARCHAR})
+	</insert>
+	<update id="update" parameterType="food">
+		update food 
+		set name = #{name:VARCHAR}, maker=#{maker:VARCHAR}, material=#{material:VARCHAR}, img=#{img:VARCHAR}
+		where code = #{code:VARCHAR}
+	</update>
+	<delete id="delete" parameterType="string">
+		delete from food where code=#{code};
+	</delete>
+	<delete id="delete_cart" parameterType="string">
+		delete from cart where code = #{code}
+	</delete>
+	<delete id="delete_mydiet" parameterType="string">
+		delete from mydiet where code = #{code}
+	</delete>
+</mapper>

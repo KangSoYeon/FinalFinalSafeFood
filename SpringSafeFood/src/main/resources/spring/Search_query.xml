@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+	
+<mapper namespace="com.ssafy.model.dao.SearchDAO">
+
+	<insert id="insert" parameterType="search">
+		insert into search(skey,scnt,soption)
+		values(#{skey:VARCHAR},#{scnt:INTEGER},#{soption:INTEGER})
+	</insert>
+	
+	<update id="update" parameterType="search">
+		update search set scnt = #{scnt:INTEGER}
+		where skey = #{skey}
+	</update>
+	
+	<select id="search" parameterType="string" resultType="search">
+		select * from search where skey = #{skey}
+	</select>
+
+	<select id="searchAll"  resultType="search">
+		select * from search
+	</select>
+</mapper>

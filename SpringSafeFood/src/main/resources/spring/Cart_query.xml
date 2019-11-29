@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.model.dao.CartDAO">
+	<resultMap type="food" id="foodMap">
+		<id column="code" property="code"/>
+		<result column="name" property="name"/>
+		<result column="supportpereat" property="supportpereat"/>
+		<result column="calory" property="calory"/>
+		<result column="carbo" property="carbo"/>
+		<result column="protetin" property="protetin"/>
+		<result column="fat" property="fat"/>
+		<result column="sugar" property="sugar"/>
+		<result column="natrium" property="natrium"/>
+		<result column="chole" property="chole"/>
+		<result column="fattyacid" property="fattyacid"/>
+		<result column="transfat" property="transfat"/>
+		<result column="maker" property="maker"/>
+		<result column="material" property="material"/>
+		<result column="img" property="img"/>
+	</resultMap>
+	<resultMap type="cart" id="cartMap">
+		<id column="cno" property="cno"/>
+		<result column="regdate" property="regdate"/>
+		<result column="amount" property="amount"/>
+		<result column="code" property="code"/>
+		<result column="id" property="id"/>
+		<association property="food" resultMap="foodMap"></association>
+	</resultMap>
+	<select id="search" parameterType="string" resultMap="cartMap">
+		select *
+		from food, cart
+		where food.code = cart.code and cart.id = #{id}
+	</select>
+	
+	<select id="searchAll" resultType="cart">
+		select * from cart
+	</select>
+
+	<delete id="delete" parameterType="integer">
+		delete from cart where cno = #{cno}
+	</delete>
+	
+	<insert id="insert" parameterType="cart" useGeneratedKeys="true" keyProperty="cno">
+		insert into cart(regdate, amount, code, id) 
+		values(	curdate(),
+				#{amount:INTEGER},
+				#{code:VARCHAR},
+	  		    #{id:VARCHAR} )
+	</insert>
+	
+	<select id="week" parameterType="String" resultMap="cartMap">
+		select * 
+		from food, 
+		( select * from cart
+		where date(regdate) between subdate(curdate(),date_format(curdate(),'%w')-1)
+		and subdate(curdate(),date_format(curdate(),'%w')-7) ) as cart
+		where food.code = cart.code and cart.id=#{id};
+	</select>
+	
+	<select id="month" parameterType="string" resultMap="cartMap">
+		select * 
+		from food, 
+		( select * from cart
+		where year(regdate) like year(curdate()) 
+		and month(regdate) like month(curdate())) as cart
+		where food.code = cart.code and cart.id=#{id};
+	</select>
+	
+	<select id="year" parameterType="string" resultMap="cartMap">
+		select * 
+		from food, 
+		( select * from cart
+		where year(regdate) like year(curdate())) as cart
+		where food.code = cart.code and cart.id=#{id};
+	</select>
+</mapper>

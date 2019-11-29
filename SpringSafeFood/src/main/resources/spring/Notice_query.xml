@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+	
+<mapper namespace="com.ssafy.model.dao.NoticeDAO">
+
+	<select id="search" parameterType="string" resultType="notice">
+		select * from notice where no = #{no}
+	</select>
+	
+	<select id="searchAll" resultType="notice">
+		select * from notice	
+	</select>
+	<insert id="insert" parameterType="notice">
+		insert into notice(id,title,contents,viewcnt)
+		values(
+			#{id:VARCHAR},
+			#{title:VARCHAR},
+			#{contents:VARCHAR},
+			#{viewcnt:INTEGER}
+		)
+	</insert>
+	
+	<update id="update" parameterType="notice">
+		update notice set 
+			title= #{title:VARCHAR},
+			contents = #{contents:VARCHAR},
+			viewcnt = #{viewcnt:INTEGER}
+		where no = #{no:INTEGER} 
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		delete from notice where no=#{no}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+

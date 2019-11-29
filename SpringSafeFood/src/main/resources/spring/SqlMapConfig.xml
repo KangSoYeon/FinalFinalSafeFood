@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+      "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+  <typeAliases>		
+  <!-- Query에 mapping할 데이터를 편하게 사용하기 위해 alias로 등록 -->
+    <typeAlias type="com.ssafy.model.dto.Member" 		alias="member"/>
+    <typeAlias type="com.ssafy.model.dto.Food"		alias="food"/>
+    <typeAlias type="com.ssafy.model.dto.MyDiet"		alias="mydiet"/>
+    <typeAlias type="com.ssafy.model.dto.Cart"		alias="cart"/>
+    <typeAlias type="com.ssafy.model.dto.Board"		alias="board"/>
+    <typeAlias type="com.ssafy.model.dto.Notice"		alias="notice"/>
+    <typeAlias type="com.ssafy.model.dto.TotalDiet"		alias="totaldiet"/>
+    <typeAlias type="com.ssafy.model.dto.Search"		alias="search"/>
+  </typeAliases>
+  <mappers>
+  <!-- Query를 작성한 XML 등록 -->
+         <mapper resource="spring/Food_query.xml"/>
+         <mapper resource="spring/Member_query.xml"/>
+         <mapper resource="spring/MyDiet_query.xml"/>
+         <mapper resource="spring/Cart_query.xml"/>
+         <mapper resource="spring/Board_query.xml"/>
+         <mapper resource="spring/Notice_query.xml"/>
+         <mapper resource="spring/Search_query.xml"/>
+  </mappers>
+</configuration>
